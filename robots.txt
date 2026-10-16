@@ -1,0 +1,4 @@
+# Ambiente de teste (site.amplexoedu.com): buscadores não devem rastrear.
+# Este arquivo existe só no branch novo-site e NÃO deve ir para o site oficial.
+User-agent: *
+Disallow: /

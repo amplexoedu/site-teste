@@ -31,11 +31,9 @@ flowchart LR
 
 1. Abra [amplexoedu/amplexoedu.com → Actions → **Publicar site de teste no oficial**](https://github.com/amplexoedu/amplexoedu.com/actions/workflows/publicar-site-teste.yml).
 2. Clique em **Run workflow**.
-3. Em **O que levar**, informe os arquivos ou pastas separados por espaço. O valor padrão é a página inicial nova:
-   ```
-   index.html css/home-v2.css js/home-v2.js assets/images/v2
-   ```
-   Para levar o site de teste inteiro, digite apenas `.`.
+3. Em **O que levar**, informe os arquivos ou pastas separados por espaço:
+   - para levar **tudo o que está em teste** (nova home, três idiomas, páginas legais, fontes locais), digite apenas `.`;
+   - o valor que vem preenchido (`index.html css/home-v2.css js/home-v2.js assets/images/v2`) é da primeira versão do teste e **não basta mais**: a home agora depende das fontes locais, do seletor de idiomas e das páginas legais.
 4. Em **Confirmação**, digite `PUBLICAR` e clique em **Run workflow**.
 
 O resumo da execução lista os arquivos alterados, e o site oficial atualiza em 1 a 2 minutos.
@@ -72,7 +70,52 @@ Seções da página: abertura com parede de fotos em movimento · faixas cruzada
 
 A página respeita a configuração de **movimento reduzido** do sistema: quem desativa animações vê tudo sem efeitos.
 
-As demais páginas (Jornal Amplexo, Escola Azul, Premiações, Competições, ACSL, `en/` etc.) são cópias das páginas do site oficial.
+As demais páginas (Jornal Amplexo, Escola Azul, Premiações, Competições, ACSL etc.) vêm do site oficial, agora em três idiomas.
+
+## Em teste agora: português, inglês e espanhol
+
+Todas as páginas existem em três idiomas, com o mesmo caminho em cada pasta:
+
+| Idioma | Onde fica | Exemplo |
+|---|---|---|
+| Português | raiz | `/premiacoes/` |
+| Inglês | `en/` | `/en/premiacoes/` |
+| Espanhol | `es/` | `/es/premiacoes/` |
+
+As páginas legais são a exceção: têm o endereço traduzido (`/privacidade/`, `/en/privacy/`, `/es/privacidad/`).
+
+**Como o idioma é escolhido** (`js/global.js`):
+1. Na primeira visita, o site usa o idioma do navegador. Português e espanhol vão para as versões respectivas; qualquer outro idioma vai para o inglês.
+2. Quando a pessoa escolhe um idioma pelas bandeiras, a escolha fica guardada no navegador e passa a valer em todas as páginas.
+3. Robôs de busca (Google, Bing) não são redirecionados, para que as três versões apareçam nas buscas. As tags `hreflang` indicam a eles qual página corresponde a qual idioma.
+
+**Para criar ou alterar uma página**, edite o HTML normalmente e depois rode, na raiz do repositório:
+
+```bash
+node scripts/idiomas.js
+```
+
+O script aplica em todas as páginas o seletor de bandeiras, as tags `hreflang`, as fontes locais e a capa dos vídeos do YouTube. Para uma página nova, acrescente antes os três caminhos dela na lista `PAGINAS`, no início do script.
+
+## Em teste agora: privacidade, termos e acessibilidade
+
+| Documento | Português | Inglês | Espanhol |
+|---|---|---|---|
+| Política de Privacidade | `/privacidade/` | `/en/privacy/` | `/es/privacidad/` |
+| Termos de Uso | `/termos/` | `/en/terms/` | `/es/terminos/` |
+| Declaração de Acessibilidade | `/acessibilidade/` | `/en/accessibility/` | `/es/accesibilidad/` |
+
+Os textos consideram a LGPD (Brasil), as leis de proteção de dados de outros países da América do Sul, o GDPR (União Europeia) e as leis dos Estados Unidos (COPPA, CCPA/CPRA), além das WCAG 2.2, da Lei Brasileira de Inclusão, do ADA e do Ato Europeu de Acessibilidade. Dados que a empresa ainda precisa informar (razão social, endereço, encarregado de dados, foro) aparecem **destacados em amarelo** nas páginas.
+
+> [!WARNING]
+> Os documentos legais devem ser revisados por um(a) advogado(a) antes de serem publicados no site oficial.
+
+Para que o site cumpra o que esses documentos dizem:
+- **Sem cookies e sem rastreadores.** O site não usa analytics, pixels nem publicidade. Por isso não precisa de banner de cookies.
+- **Fontes no próprio site** (`assets/fonts/`, `css/fonts.css`). Abrir uma página não envia o IP do visitante ao Google.
+- **Vídeos do YouTube só carregam ao clicar.** Até lá aparece uma capa guardada no site (`assets/images/youtube/`); depois do clique, o vídeo abre no modo de privacidade aprimorada (`youtube-nocookie.com`).
+
+Se um dia o site passar a usar analytics, pixel ou outro serviço que colete dados, a Política de Privacidade precisa ser atualizada e um banner de consentimento passa a ser obrigatório na Europa.
 
 ## Ver no computador
 

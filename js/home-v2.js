@@ -136,7 +136,7 @@
   document.querySelectorAll('[data-reveal]').forEach(el => revealer.observe(el));
 
   /* Contadores: +500, +3.000 */
-  const fmt = new Intl.NumberFormat('pt-BR');
+  const fmt = new Intl.NumberFormat(doc.lang || 'pt-BR');
   const counters = document.querySelectorAll('[data-count]');
   if (!reduce) {
     const countUp = el => {
@@ -222,7 +222,7 @@
     menuOpen = open;
     doc.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.querySelector('span').textContent = open ? 'Fechar' : 'Menu';
+    toggle.querySelector('span').textContent = open ? (toggle.dataset.close || 'Fechar') : (toggle.dataset.open || 'Menu');
     if (open) {
       nav.classList.remove('is-hidden');
       menu.querySelector('a')?.focus({ preventScroll: true });

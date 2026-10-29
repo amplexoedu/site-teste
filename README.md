@@ -57,6 +57,22 @@ Estes arquivos são a configuração do ambiente de teste. O botão de publicaç
 
 A página inicial também evita indexação por conta própria: quando é aberta em `site.amplexoedu.com`, adiciona `noindex` automaticamente. Em `amplexoedu.com`, essa linha não faz nada. Assim o mesmo `index.html` serve para os dois ambientes, sem precisar de ajuste na hora de publicar.
 
+## Em teste agora: Matrículas e rematrículas 2027
+
+**https://site.amplexoedu.com/matriculas/** (no oficial: `amplexoedu.com/matriculas/`)
+
+| Arquivo | Conteúdo |
+|---|---|
+| `matriculas/index.html` | Página da campanha (só em português) |
+| `css/matriculas.css` | Estilos da página |
+| `js/matriculas.js` | Menu do celular, cabeçalho e revelação suave ao rolar |
+
+As fotos, o logotipo, o selo Brands For Good e as fontes já existem no site e não precisam ser levados de novo.
+
+Para publicar no oficial, use em **O que levar**: `matriculas css/matriculas.css js/matriculas.js`
+
+Seções: abertura com a faixa da campanha · o clube · trilhas · como funciona · comunidade · olimpíadas · conquistas · recursos e horários · campanha e chegada · dúvidas · convite final. Todos os botões abrem o WhatsApp (11) 91100-9793 com uma de três mensagens prontas: nova matrícula, rematrícula ou valores e condições. A página não mostra preços. Assim como a página inicial, ela adiciona `noindex` sozinha quando aberta em `site.amplexoedu.com`.
+
 ## Em teste agora: nova página inicial
 
 | Arquivo | Conteúdo |

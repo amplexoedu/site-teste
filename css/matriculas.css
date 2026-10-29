@@ -260,7 +260,7 @@ p { text-wrap: pretty; }
 
 .campaign-band {
   position: relative; grid-column: 1 / -1;
-  display: grid; grid-template-columns: 1fr 1.25fr auto; align-items: center; gap: 20px 36px;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px 36px;
   margin-top: clamp(4px, 1vw, 16px); padding: 22px 28px;
   border-radius: 18px;
   background: rgba(255, 255, 255, .05);
@@ -269,8 +269,8 @@ p { text-wrap: pretty; }
 .campaign-band::before {
   content: ""; position: absolute; top: 0; left: 28px; right: 28px; height: 1px; background: var(--gold-line);
 }
-.band-item { display: flex; align-items: flex-start; gap: 14px; }
-.band-item p { margin: 0; color: rgba(255, 255, 255, .88); font-size: .98rem; line-height: 1.5; }
+.band-item { display: flex; align-items: center; gap: 14px; }
+.band-item p { margin: 0; color: rgba(255, 255, 255, .88); font-size: 1.02rem; line-height: 1.5; }
 .band-item strong { color: #fff; }
 .band-tag {
   flex: none; margin-top: 2px; padding: 4px 10px; border-radius: 6px;
@@ -282,8 +282,8 @@ p { text-wrap: pretty; }
   color: var(--gold-bright); font-weight: 700; text-decoration: none;
   padding: 10px 0;
 }
-.band-link svg { width: 18px; height: 18px; transition: transform .3s var(--ease); }
-.band-link:hover svg { transform: translateX(4px); }
+.band-link svg { width: 20px; height: 20px; }
+.band-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* ---------- O clube ---------- */
 .clube { background: var(--paper); }
@@ -784,8 +784,8 @@ p { text-wrap: pretty; }
 
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { order: 3; max-width: 520px; width: 100%; margin-inline: auto; } /* campanha logo após os botões */
-  .campaign-band { grid-template-columns: 1fr 1fr; }
-  .band-link { grid-column: 1 / -1; justify-self: start; padding: 0; }
+  .campaign-band { grid-template-columns: 1fr; }
+  .band-link { justify-self: start; padding: 0; }
 
   .section-head, .clube-intro, .statement, .para-quem, .comunidade-grid, .olimpiadas-grid,
   .recursos-grid, .duvidas-grid, .como-grid { grid-template-columns: 1fr; }
@@ -823,7 +823,7 @@ p { text-wrap: pretty; }
   .hero-visual::before { top: -12px; right: -10px; bottom: calc(16% + 12px); left: calc(10% + 12px); }
   .hero-chip { right: 0; bottom: 6%; font-size: 12px; padding: 8px 12px; }
   .campaign-band { grid-template-columns: 1fr; padding: 20px; gap: 16px; }
-  .band-item { flex-direction: column; gap: 8px; }
+  .band-item { flex-direction: column; align-items: flex-start; gap: 8px; }
   .campaign-band::before { left: 20px; right: 20px; }
 
   .pillars { grid-template-columns: 1fr; }

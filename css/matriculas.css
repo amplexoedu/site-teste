@@ -529,13 +529,66 @@ p { text-wrap: pretty; }
 
 /* ---------- Conquistas ---------- */
 .conquistas { background: #fff; }
-.conquistas-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .8fr); gap: 32px 56px; align-items: start; }
+.conquistas-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.45fr); gap: 32px 48px; align-items: start; }
 .conq-label {
   margin: 0 0 16px; color: var(--muted);
   font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
 }
-.conq-students { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 20px; }
-.conq-students .conq-label { grid-column: 1 / -1; margin-bottom: -4px; }
+.conq-institution { padding-left: 0; }
+.seal-panel { padding: 28px; border-radius: var(--radius); border: 1px dashed rgba(11, 41, 64, .25); background: var(--paper); }
+.seal-panel img { width: 100%; max-width: 280px; margin: 0 auto 20px; mix-blend-mode: multiply; }
+.seal-panel h3 { margin: 0 0 8px; color: var(--navy); font-family: var(--serif); font-weight: 600; font-size: 1.35rem; }
+.seal-panel p { margin: 0 0 16px; color: var(--muted); }
+
+.conq-students { display: flex; flex-direction: column; }
+.conq-awards-card {
+  position: relative; overflow: hidden;
+  padding: clamp(26px, 3.5vw, 36px);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(380px 260px at 100% 0%, rgba(227, 176, 75, .25), transparent 70%),
+    radial-gradient(300px 220px at 0% 100%, rgba(133, 87, 13, .18), transparent 70%),
+    var(--navy);
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(11, 41, 64, .12);
+}
+.conq-awards-card::before {
+  content: ""; position: absolute; top: 24px; left: 26px; width: 36px; height: 2px;
+  background: var(--gold-line);
+}
+.conq-awards-list {
+  margin: 12px 0 0; padding: 0; list-style: none;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.conq-awards-list li {
+  position: relative;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  color: rgba(255, 255, 255, .9);
+  font-size: .98rem; line-height: 1.45;
+}
+.conq-awards-list li:last-child {
+  padding-bottom: 0; border-bottom: none;
+}
+.conq-awards-list .award-ico {
+  flex-shrink: 0; width: 17px; height: 17px; margin-top: 3px;
+  fill: var(--gold-bright);
+}
+.conq-awards-list strong { color: #fff; font-weight: 700; }
+.conq-awards-list .featured-award {
+  color: #fff;
+  font-size: 1.05rem;
+}
+.conq-awards-list .award-highlight-lg {
+  color: var(--gold-bright);
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-right: 2px;
+}
+
 .stat {
   position: relative; overflow: hidden;
   display: flex; flex-direction: column; justify-content: flex-end;

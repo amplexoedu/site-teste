@@ -111,7 +111,7 @@ As páginas legais são a exceção: têm o endereço traduzido (`/privacidade/`
 node scripts/idiomas.js
 ```
 
-O script aplica em todas as páginas o seletor de bandeiras, as tags `hreflang`, as fontes locais e a capa dos vídeos do YouTube. Para uma página nova, acrescente antes os três caminhos dela na lista `PAGINAS`, no início do script.
+O script aplica em todas as páginas o seletor de bandeiras, as tags `hreflang`, as fontes locais, a capa dos vídeos do YouTube e o aviso de cookies (`js/cookies.js`). Para uma página nova, acrescente antes os três caminhos dela na lista `PAGINAS`, no início do script. Página fora dessa lista (como `matriculas/`)? Coloque à mão, antes do `</head>`: `<script src="../js/cookies.js" defer></script>` (ajuste os `../` à profundidade da pasta).
 
 ## Em teste agora: privacidade, termos e acessibilidade
 
@@ -127,11 +127,31 @@ Os textos consideram a LGPD (Brasil), as leis de proteção de dados de outros p
 > Os documentos legais devem ser revisados por um(a) advogado(a) antes de serem publicados no site oficial.
 
 Para que o site cumpra o que esses documentos dizem:
-- **Sem cookies e sem rastreadores.** O site não usa analytics, pixels nem publicidade. Por isso não precisa de banner de cookies.
+- **Cookies só com consentimento.** O único rastreador é o Pixel da Meta, que só carrega depois do "Aceitar" no aviso de cookies (veja a seção abaixo). O site não usa analytics.
 - **Fontes no próprio site** (`assets/fonts/`, `css/fonts.css`). Abrir uma página não envia o IP do visitante ao Google.
 - **Vídeos do YouTube só carregam ao clicar.** Até lá aparece uma capa guardada no site (`assets/images/youtube/`); depois do clique, o vídeo abre no modo de privacidade aprimorada (`youtube-nocookie.com`).
 
-Se um dia o site passar a usar analytics, pixel ou outro serviço que colete dados, a Política de Privacidade precisa ser atualizada e um banner de consentimento passa a ser obrigatório na Europa.
+Se um dia o site passar a usar analytics ou outro serviço que colete dados, a Política de Privacidade precisa ser atualizada e o serviço deve carregar só depois do consentimento, como o Pixel.
+
+## Em teste agora: Pixel da Meta e aviso de cookies
+
+O site tem o **Pixel da Meta** (Facebook e Instagram), ID `2043264233020803`, para medir os anúncios e mostrá-los a quem visitou o site. Tudo fica em `js/cookies.js`, carregado em todas as páginas:
+
+| Situação | O que acontece |
+|---|---|
+| Primeira visita | Aparece o aviso de cookies, com **Recusar** e **Aceitar** no mesmo destaque. Nada vai para a Meta. |
+| Clicou em **Aceitar** | O Pixel carrega e registra a visita (`PageView`). Cada clique num botão do WhatsApp (`wa.me`) vira um **contato** (`Contact`). |
+| Clicou em **Recusar** | O Pixel não carrega. Se tinha aceitado antes, os cookies do Pixel são apagados. |
+| Visitas seguintes | A resposta fica guardada no navegador por 12 meses; depois, o aviso aparece de novo. |
+| Mudar de ideia | Botão **Mudar minhas preferências de cookies** no item 12 da Política de Privacidade. |
+| Navegador com *Global Privacy Control* | O aviso não aparece e o Pixel nunca carrega. |
+
+> [!NOTE]
+> O Pixel só funciona em **amplexoedu.com**. Em `site.amplexoedu.com` o aviso aparece normalmente, mas o Pixel não carrega, para que as visitas de teste não entrem nos números dos anúncios. Para conferir se o Pixel está funcionando no site oficial, use **Testar eventos** no Gerenciador de Eventos da Meta.
+
+A Política de Privacidade (nos três idiomas) descreve o Pixel nos itens 3.3, 4, 7, 9, 10 e 12. Se o uso mudar (outro evento, outro pixel, outra rede), atualize a política junto.
+
+Para publicar no oficial, use em **O que levar**: `.` (as 47 páginas receberam o script, e as três políticas e `css/legal.css` mudaram).
 
 ## Ver no computador
 

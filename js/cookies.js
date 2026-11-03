@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  var PIXEL = '2043264233020803';
+  var PIXEL = '1873573433803022';
   var CHAVE = 'amplexo-cookies';
   var VALIDADE = 365 * 24 * 60 * 60 * 1000; // depois de 12 meses, pergunta de novo
   var OFICIAL = location.hostname === 'amplexoedu.com';
@@ -80,39 +80,40 @@
     });
   }
 
-  /* 1) Aviso (com estilo próprio, porque as páginas do site usam folhas de estilo diferentes) */
+  /* 1) Aviso (com estilo próprio, porque as páginas do site usam folhas de estilo diferentes).
+     As classes não têm "cookie" no nome porque bloqueadores de anúncio costumam esconder esses elementos. */
   var aviso, estado, origem;
   function criarAviso() {
     var css = document.createElement('style');
     css.textContent = [
-      '.cookie-aviso{position:fixed;z-index:2147483000;left:16px;bottom:16px;box-sizing:border-box;width:min(440px,calc(100% - 32px));padding:20px 22px;border-radius:18px;background:#0b2940;color:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.6),inset 0 0 0 1px rgba(247,217,138,.4);font-family:inherit;font-size:15px;line-height:1.55;letter-spacing:normal;text-align:left}',
-      '.cookie-aviso[hidden]{display:none}',
-      '.cookie-aviso p{margin:0 0 16px;color:rgba(255,255,255,.9);font:inherit}',
-      '.cookie-aviso .cookie-aviso-estado{margin-top:-6px;color:#f7d98a;font-size:13.5px}',
-      '.cookie-aviso a{color:#f7d98a;font-weight:700;text-decoration:underline;text-underline-offset:3px}',
-      '.cookie-aviso-botoes{display:flex;gap:10px}',
-      '.cookie-aviso button{flex:1;min-height:44px;margin:0;padding:10px 18px;border:1px solid #e3b04b;border-radius:999px;background:transparent;color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:background-color .2s,color .2s}',
-      '.cookie-aviso button:hover{background:#e3b04b;color:#06192a}',
-      '.cookie-aviso:focus{outline:none}',
-      '.cookie-aviso :focus-visible{outline:3px solid #f7d98a;outline-offset:3px}',
-      '@media (max-width:520px){.cookie-aviso{left:12px;bottom:12px;width:calc(100% - 24px);padding:18px}}',
-      '@media (prefers-reduced-motion:no-preference){.cookie-aviso{animation:cookie-aviso-entra .4s ease-out}@keyframes cookie-aviso-entra{from{opacity:0;transform:translateY(12px)}}}',
-      '@media print{.cookie-aviso{display:none!important}}'
+      '.amx-aviso{position:fixed;z-index:2147483000;left:16px;bottom:16px;box-sizing:border-box;width:min(440px,calc(100% - 32px));padding:20px 22px;border-radius:18px;background:#0b2940;color:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.6),inset 0 0 0 1px rgba(247,217,138,.4);font-family:inherit;font-size:15px;line-height:1.55;letter-spacing:normal;text-align:left}',
+      '.amx-aviso[hidden]{display:none}',
+      '.amx-aviso p{margin:0 0 16px;color:rgba(255,255,255,.9);font:inherit}',
+      '.amx-aviso .amx-aviso-estado{margin-top:-6px;color:#f7d98a;font-size:13.5px}',
+      '.amx-aviso a{color:#f7d98a;font-weight:700;text-decoration:underline;text-underline-offset:3px}',
+      '.amx-aviso-botoes{display:flex;gap:10px}',
+      '.amx-aviso button{flex:1;min-height:44px;margin:0;padding:10px 18px;border:1px solid #e3b04b;border-radius:999px;background:transparent;color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:background-color .2s,color .2s}',
+      '.amx-aviso button:hover{background:#e3b04b;color:#06192a}',
+      '.amx-aviso:focus{outline:none}',
+      '.amx-aviso :focus-visible{outline:3px solid #f7d98a;outline-offset:3px}',
+      '@media (max-width:520px){.amx-aviso{left:12px;bottom:12px;width:calc(100% - 24px);padding:18px}}',
+      '@media (prefers-reduced-motion:no-preference){.amx-aviso{animation:amx-aviso-entra .4s ease-out}@keyframes amx-aviso-entra{from{opacity:0;transform:translateY(12px)}}}',
+      '@media print{.amx-aviso{display:none!important}}'
     ].join('\n');
     document.head.appendChild(css);
 
     aviso = document.createElement('div');
-    aviso.className = 'cookie-aviso';
+    aviso.className = 'amx-aviso';
     aviso.setAttribute('role', 'region');
     aviso.setAttribute('aria-label', t.rotulo);
     aviso.tabIndex = -1;
     aviso.innerHTML = '<p>' + t.texto + ' <a href="' + t.politica + '">' + t.saiba + '</a></p>' +
-      '<p class="cookie-aviso-estado" hidden></p>' +
-      '<div class="cookie-aviso-botoes">' +
+      '<p class="amx-aviso-estado" hidden></p>' +
+      '<div class="amx-aviso-botoes">' +
       '<button type="button" data-escolha="recusado">' + t.recusar + '</button>' +
       '<button type="button" data-escolha="aceito">' + t.aceitar + '</button>' +
       '</div>';
-    estado = aviso.querySelector('.cookie-aviso-estado');
+    estado = aviso.querySelector('.amx-aviso-estado');
     aviso.addEventListener('click', function (evento) {
       var botao = evento.target.closest('[data-escolha]');
       if (botao) escolher(botao.getAttribute('data-escolha'));

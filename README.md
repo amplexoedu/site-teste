@@ -135,7 +135,7 @@ Se um dia o site passar a usar analytics ou outro serviço que colete dados, a P
 
 ## Em teste agora: Pixel da Meta e aviso de cookies
 
-O site tem o **Pixel da Meta** (Facebook e Instagram), ID `2043264233020803`, para medir os anúncios e mostrá-los a quem visitou o site. Tudo fica em `js/cookies.js`, carregado em todas as páginas:
+O site tem o **Pixel da Meta** (Facebook e Instagram), ID `1873573433803022`, para medir os anúncios e mostrá-los a quem visitou o site. Tudo fica em `js/cookies.js`, carregado em todas as páginas:
 
 | Situação | O que acontece |
 |---|---|
@@ -148,6 +148,8 @@ O site tem o **Pixel da Meta** (Facebook e Instagram), ID `2043264233020803`, pa
 
 > [!NOTE]
 > O Pixel só funciona em **amplexoedu.com**. Em `site.amplexoedu.com` o aviso aparece normalmente, mas o Pixel não carrega, para que as visitas de teste não entrem nos números dos anúncios. Para conferir se o Pixel está funcionando no site oficial, use **Testar eventos** no Gerenciador de Eventos da Meta.
+
+A **verificação do domínio** na Meta usa a etiqueta `<meta name="facebook-domain-verification" ...>` no `<head>` da página inicial (`index.html`). Ela não coleta dados e só vale depois de publicada em `amplexoedu.com`; não a remova, ou a Meta deixa de considerar o domínio verificado.
 
 A Política de Privacidade (nos três idiomas) descreve o Pixel nos itens 3.3, 4, 7, 9, 10 e 12. Se o uso mudar (outro evento, outro pixel, outra rede), atualize a política junto.
 

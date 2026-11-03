@@ -63,13 +63,14 @@ A página inicial também evita indexação por conta própria: quando é aberta
 
 | Arquivo | Conteúdo |
 |---|---|
-| `matriculas/index.html` | Página da campanha (só em português) |
+| `matriculas/index.html` | Página da campanha em português |
+| `en/matriculas/index.html`, `es/matriculas/index.html` | A mesma página em inglês e em espanhol |
 | `css/matriculas.css` | Estilos da página |
 | `js/matriculas.js` | Menu do celular, cabeçalho e revelação suave ao rolar |
 
 As fotos, o logotipo, o selo Brands For Good e as fontes já existem no site e não precisam ser levados de novo.
 
-Para publicar no oficial, use em **O que levar**: `matriculas css/matriculas.css js/matriculas.js`
+Para publicar no oficial, use em **O que levar**: `matriculas en/matriculas es/matriculas css/matriculas.css css/global.css js/matriculas.js js/global.js js/cookies.js` (ou `.` para levar tudo o que está em teste).
 
 Seções: abertura com a faixa da campanha · o clube · trilhas · como funciona · comunidade · olimpíadas · conquistas · recursos e horários · campanha e chegada · dúvidas · convite final. Todos os botões abrem o WhatsApp (11) 91100-9793 com uma de três mensagens prontas: nova matrícula, rematrícula ou valores e condições. A página não mostra preços. Assim como a página inicial, ela adiciona `noindex` sozinha quando aberta em `site.amplexoedu.com`.
 
@@ -99,6 +100,9 @@ Todas as páginas existem em três idiomas, com o mesmo caminho em cada pasta:
 | Espanhol | `es/` | `/es/premiacoes/` |
 
 As páginas legais são a exceção: têm o endereço traduzido (`/privacidade/`, `/en/privacy/`, `/es/privacidad/`).
+
+> [!IMPORTANT]
+> A **página inicial** e **Matrículas** em inglês e espanhol são traduções da versão em português, com a mesma estrutura. Ao mudar um texto em português, mude também em `en/` e `es/`; senão, as versões ficam diferentes.
 
 **Como o idioma é escolhido** (`js/global.js`):
 1. Na primeira visita, o site usa o idioma do navegador. Português e espanhol vão para as versões respectivas; qualquer outro idioma vai para o inglês.
@@ -139,7 +143,7 @@ O site tem o **Pixel da Meta** (Facebook e Instagram), ID `1873573433803022`, pa
 
 | Situação | O que acontece |
 |---|---|
-| Primeira visita | Aparece o aviso de cookies, com **Recusar** e **Aceitar** no mesmo destaque. Nada vai para a Meta. |
+| Primeira visita | Aparece um cartão no pé da tela ("Ajude o Amplexo a chegar a mais famílias"), com **Recusar** e **Aceitar** no mesmo destaque. Nada vai para a Meta. |
 | Clicou em **Aceitar** | O Pixel carrega e registra a visita (`PageView`). Cada clique num botão do WhatsApp (`wa.me`) vira um **contato** (`Contact`). |
 | Clicou em **Recusar** | O Pixel não carrega. Se tinha aceitado antes, os cookies do Pixel são apagados. |
 | Visitas seguintes | A resposta fica guardada no navegador por 12 meses; depois, o aviso aparece de novo. |

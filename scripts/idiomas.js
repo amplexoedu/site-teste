@@ -29,6 +29,7 @@ const PAGINAS = [
   ['acsl/', 'en/acsl/', 'es/acsl/'],
   ['smeta/', 'en/smeta/', 'es/smeta/'],
   ['projetos-que-abraçam/', 'en/projetos-que-abraçam/', 'es/projetos-que-abraçam/'],
+  ['matriculas/', 'en/matriculas/', 'es/matriculas/'],
   ['jornal-amplexo/', 'en/jornal-amplexo/', 'es/jornal-amplexo/'],
   ...['calendario-reune-ciencia-arte-e-tecnologia', 'distincao-internacional-impacto-educacional', 'novos-projetos-dos-alunos', 'nutrir-o-cerebro-ao-longo-da-vida']
     .map(s => [`jornal-amplexo/${s}/`, `en/jornal-amplexo/${s}/`, `es/jornal-amplexo/${s}/`]),

@@ -17,21 +17,21 @@
 
   var TEXTOS = {
     pt: {
-      rotulo: 'Aviso de cookies',
+      rotulo: 'Aviso de cookies', titulo: 'Você aceita cookies de publicidade?',
       texto: 'Usamos cookies da Meta (Facebook e Instagram) para medir nossos anúncios e mostrar o Amplexo a quem já visitou o site. Eles só são ativados se você aceitar.',
       saiba: 'Saiba mais', politica: '/privacidade/#cookies', recusar: 'Recusar', aceitar: 'Aceitar',
       aceito: 'Sua escolha atual: cookies aceitos.', recusado: 'Sua escolha atual: cookies recusados.',
       gpc: 'Seu navegador envia o sinal Global Privacy Control, por isso o Pixel da Meta fica desligado.'
     },
     en: {
-      rotulo: 'Cookie notice',
+      rotulo: 'Cookie notice', titulo: 'Do you accept advertising cookies?',
       texto: 'We use Meta (Facebook and Instagram) cookies to measure our ads and show Amplexo to people who have visited the site. They are only turned on if you accept.',
       saiba: 'Learn more', politica: '/en/privacy/#cookies', recusar: 'Decline', aceitar: 'Accept',
       aceito: 'Your current choice: cookies accepted.', recusado: 'Your current choice: cookies declined.',
       gpc: 'Your browser sends the Global Privacy Control signal, so the Meta Pixel stays off.'
     },
     es: {
-      rotulo: 'Aviso de cookies',
+      rotulo: 'Aviso de cookies', titulo: '¿Aceptas las cookies publicitarias?',
       texto: 'Usamos cookies de Meta (Facebook e Instagram) para medir nuestros anuncios y mostrar Amplexo a quienes ya visitaron el sitio. Solo se activan si las aceptas.',
       saiba: 'Más información', politica: '/es/privacidad/#cookies', recusar: 'Rechazar', aceitar: 'Aceptar',
       aceito: 'Tu elección actual: cookies aceptadas.', recusado: 'Tu elección actual: cookies rechazadas.',
@@ -86,18 +86,22 @@
   function criarAviso() {
     var css = document.createElement('style');
     css.textContent = [
-      '.amx-aviso{position:fixed;z-index:2147483000;left:16px;bottom:16px;box-sizing:border-box;width:min(440px,calc(100% - 32px));padding:20px 22px;border-radius:18px;background:#0b2940;color:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.6),inset 0 0 0 1px rgba(247,217,138,.4);font-family:inherit;font-size:15px;line-height:1.55;letter-spacing:normal;text-align:left}',
+      // Faixa na largura toda, no pé da tela: bem visível, mas sem bloquear a página
+      '.amx-aviso{position:fixed;z-index:2147483000;left:0;right:0;bottom:0;box-sizing:border-box;padding:22px 24px;border-top:3px solid #e3b04b;background:#0b2940;color:#fff;box-shadow:0 -20px 50px -24px rgba(0,0,0,.6);font-family:inherit;font-size:16px;line-height:1.55;letter-spacing:normal;text-align:left}',
       '.amx-aviso[hidden]{display:none}',
-      '.amx-aviso p{margin:0 0 16px;color:rgba(255,255,255,.9);font:inherit}',
-      '.amx-aviso .amx-aviso-estado{margin-top:-6px;color:#f7d98a;font-size:13.5px}',
+      '.amx-aviso-conteudo{display:flex;flex-wrap:wrap;align-items:center;gap:16px 40px;max-width:1120px;margin:0 auto}',
+      '.amx-aviso-texto{flex:1 1 460px}',
+      '.amx-aviso p{margin:0;color:rgba(255,255,255,.9);font:inherit}',
+      '.amx-aviso .amx-aviso-titulo{margin-bottom:4px;color:#f7d98a;font-size:19px;font-weight:700;line-height:1.3}',
+      '.amx-aviso .amx-aviso-estado{margin-top:8px;color:#f7d98a;font-size:14px}',
       '.amx-aviso a{color:#f7d98a;font-weight:700;text-decoration:underline;text-underline-offset:3px}',
-      '.amx-aviso-botoes{display:flex;gap:10px}',
-      '.amx-aviso button{flex:1;min-height:44px;margin:0;padding:10px 18px;border:1px solid #e3b04b;border-radius:999px;background:transparent;color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:background-color .2s,color .2s}',
+      '.amx-aviso-botoes{display:flex;gap:12px}',
+      '.amx-aviso button{min-width:150px;min-height:48px;margin:0;padding:10px 22px;border:1px solid #e3b04b;border-radius:999px;background:transparent;color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:background-color .2s,color .2s}',
       '.amx-aviso button:hover{background:#e3b04b;color:#06192a}',
       '.amx-aviso:focus{outline:none}',
       '.amx-aviso :focus-visible{outline:3px solid #f7d98a;outline-offset:3px}',
-      '@media (max-width:520px){.amx-aviso{left:12px;bottom:12px;width:calc(100% - 24px);padding:18px}}',
-      '@media (prefers-reduced-motion:no-preference){.amx-aviso{animation:amx-aviso-entra .4s ease-out}@keyframes amx-aviso-entra{from{opacity:0;transform:translateY(12px)}}}',
+      '@media (max-width:640px){.amx-aviso{padding:18px 16px calc(18px + env(safe-area-inset-bottom));border-radius:18px 18px 0 0}.amx-aviso-texto{flex-basis:100%}.amx-aviso-botoes{flex:1 1 100%}.amx-aviso button{flex:1;min-width:0}.amx-aviso .amx-aviso-titulo{font-size:17px}}',
+      '@media (prefers-reduced-motion:no-preference){.amx-aviso{animation:amx-aviso-entra .45s ease-out}@keyframes amx-aviso-entra{from{transform:translateY(100%)}}}',
       '@media print{.amx-aviso{display:none!important}}'
     ].join('\n');
     document.head.appendChild(css);
@@ -107,12 +111,14 @@
     aviso.setAttribute('role', 'region');
     aviso.setAttribute('aria-label', t.rotulo);
     aviso.tabIndex = -1;
-    aviso.innerHTML = '<p>' + t.texto + ' <a href="' + t.politica + '">' + t.saiba + '</a></p>' +
-      '<p class="amx-aviso-estado" hidden></p>' +
+    aviso.innerHTML = '<div class="amx-aviso-conteudo"><div class="amx-aviso-texto">' +
+      '<p class="amx-aviso-titulo">' + t.titulo + '</p>' +
+      '<p>' + t.texto + ' <a href="' + t.politica + '">' + t.saiba + '</a></p>' +
+      '<p class="amx-aviso-estado" hidden></p></div>' +
       '<div class="amx-aviso-botoes">' +
       '<button type="button" data-escolha="recusado">' + t.recusar + '</button>' +
       '<button type="button" data-escolha="aceito">' + t.aceitar + '</button>' +
-      '</div>';
+      '</div></div>';
     estado = aviso.querySelector('.amx-aviso-estado');
     aviso.addEventListener('click', function (evento) {
       var botao = evento.target.closest('[data-escolha]');
@@ -120,6 +126,15 @@
     });
     // No começo da página, para quem navega pelo teclado encontrar o aviso logo
     document.body.insertBefore(aviso, document.body.firstChild);
+    window.addEventListener('resize', reservarEspaco);
+  }
+  // Enquanto a faixa aparece, o fim da página ganha um espaço do tamanho dela, para o rodapé não ficar escondido
+  var folgaOriginal = null;
+  function reservarEspaco() {
+    var corpo = document.body;
+    if (folgaOriginal === null) folgaOriginal = corpo.style.paddingBottom;
+    corpo.style.paddingBottom = folgaOriginal;
+    if (!aviso.hidden) corpo.style.paddingBottom = (parseFloat(getComputedStyle(corpo).paddingBottom) || 0) + aviso.offsetHeight + 'px';
   }
   function mostrarAviso(pelaPolitica) {
     if (!aviso) criarAviso();
@@ -128,12 +143,14 @@
     estado.textContent = texto;
     estado.hidden = !texto;
     aviso.hidden = false;
+    reservarEspaco();
     if (pelaPolitica) aviso.focus();
   }
   function escolher(escolha) {
     escolhaAtual = escolha;
     gravarEscolha(escolha);
     aviso.hidden = true;
+    reservarEspaco();
     if (escolha === 'aceito') ligarPixel(); else desligarPixel();
     if (origem) { origem.focus(); origem = null; }
   }

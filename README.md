@@ -59,24 +59,25 @@ A página inicial também evita indexação por conta própria: quando é aberta
 
 ## Em teste agora: nova identidade visual na página inicial
 
-A página inicial (`/`, `/en/`, `/es/`) segue o **kit de marca Amplexo** (manual v1.0, novembro de 2026). As outras páginas continuam com a identidade anterior até serem atualizadas.
+A página inicial (`/`, `/en/`, `/es/`) usa a identidade do **kit de marca Amplexo** (manual v1.0, novembro de 2026), **sem mudar o resto do site**. Layout, fundos, tamanhos, efeitos e textos são os mesmos da versão anterior. Assim dá para comparar só a marca nova com a antiga. As outras páginas continuam com a identidade anterior.
 
 | Arquivo | Conteúdo |
 |---|---|
-| `css/home-reference.css` | Estilos da página inicial com as cores, a fonte e os elementos gráficos do manual |
+| `css/home-reference.css` | O mesmo arquivo de antes, só com as cores e a fonte do kit |
 | `css/fonts.css` | Ganhou a **Lexend** (fonte institucional), em cinco pesos |
 | `assets/fonts/lexend-*.woff2` | A Lexend convertida para a web, hospedada no próprio site (sem Google Fonts) |
-| `assets/brand/` | Arquivos oficiais do kit: marca negativa (com e sem descritor), favicon, ícones de aplicativo, manifesto, imagem de compartilhamento, padrão de L e ícones de apoio |
+| `assets/brand/` | Arquivos oficiais do kit: marca positiva (com e sem descritor), favicon, ícones de aplicativo, manifesto e imagem de compartilhamento |
 | `favicon.ico` | Favicon na raiz, onde os navegadores procuram por padrão |
-| `index.html`, `en/index.html`, `es/index.html` | Marca nova no cabeçalho e no rodapé, favicon, cor do navegador (`#1E2B4E`) e imagem de compartilhamento (Open Graph) |
+| `index.html`, `en/index.html`, `es/index.html` | Marca nova no cabeçalho, favicon, cor do navegador (`#1E2B4E`) e imagem de compartilhamento (Open Graph) |
 
-O que mudou, seguindo o manual:
-- **Cores:** só azul `#1E2B4E`, vermelho `#651D2F`, ouro `#CB9510` e branco. O azul é o fundo principal (cabeçalho, abertura, propósito, prêmio e rodapé); o vermelho aparece nos números e no destaque dos ambientes de aprendizagem; o ouro, só em destaques sobre azul ou vermelho (nunca sobre branco).
-  O kit também tem um "vermelho para telas" (`#7A1428`, pasta 03), mais vivo, mas ele vale só para as imagens de redes sociais. O site fica com o `#651D2F`, o mesmo do favicon, dos logos e do `cores.css` do kit.
-- **Fonte:** Lexend em todos os textos, com a hierarquia do manual. Caixa alta só nos sobretítulos ("Matrículas 2027" deixou de ser em maiúsculas).
-- **Marca:** versão negativa (para fundo azul), sempre do arquivo original. Em telas com menos de 360 px entra a versão sem descritor, para respeitar o tamanho mínimo.
-- **Elementos gráficos:** padrão de L (branco a 10%) no fundo da abertura e dos números, moldura em L dourada em volta da foto principal, faixa dourada acima dos títulos da abertura e do prêmio, e ícones de apoio em ouro nos números.
-- **Movimento:** a curva de animação do manual, `cubic-bezier(0.22, 1, 0.36, 1)`.
+O que mudou:
+- **Marca:** a versão positiva oficial (para fundo claro) no cabeçalho, com 240 px de largura (o mínimo do manual é 200 px). Em telas com menos de 360 px entra a versão sem descritor.
+- **Cores:** cada cor antiga virou a equivalente do kit. Azul-marinho virou azul `#1E2B4E`; vinho virou vermelho `#651D2F`; âmbar virou ouro `#CB9510`. O bege do fundo virou branco (o manual pede branco puro), o creme dos cartões de contato virou ouro a 10% e os rosados viraram vermelho a 10%. O verde-água, que não existe no kit, virou vermelho no sobretítulo "Propósito" e ouro na linha acima dos números.
+  O kit também tem um "vermelho para telas" (`#7A1428`, pasta 03), mas ele vale só para as imagens de redes sociais. O site usa o `#651D2F`, o mesmo do favicon, dos logos e do `cores.css` do kit.
+- **Fonte:** Lexend no lugar da Spectral (títulos) e da Asap (textos), nos mesmos tamanhos. A Lexend é mais larga, então alguns títulos quebram em mais linhas. Ela não tem itálico, por isso a citação do prêmio ficou sem itálico.
+- **Favicon, ícones de aplicativo, cor do navegador e imagem de compartilhamento** do kit (pasta 04).
+
+Os elementos gráficos do kit (padrão de L, moldura em L, faixa dourada e ícones de apoio) ficaram de fora de propósito, porque o site antigo não tinha nada parecido. Eles podem entrar depois, um de cada vez.
 
 A imagem de compartilhamento aponta para `https://amplexoedu.com/assets/brand/...`: no WhatsApp e nas redes ela só aparece depois de publicada no oficial.
 

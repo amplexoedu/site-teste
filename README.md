@@ -57,6 +57,34 @@ Estes arquivos são a configuração do ambiente de teste. O botão de publicaç
 
 A página inicial também evita indexação por conta própria: quando é aberta em `site.amplexoedu.com`, adiciona `noindex` automaticamente. Em `amplexoedu.com`, essa linha não faz nada. Assim o mesmo `index.html` serve para os dois ambientes, sem precisar de ajuste na hora de publicar.
 
+## Em teste agora: nova identidade visual na página inicial
+
+A página inicial (`/`, `/en/`, `/es/`) segue o **kit de marca Amplexo** (manual v1.0, novembro de 2026). As outras páginas continuam com a identidade anterior até serem atualizadas.
+
+| Arquivo | Conteúdo |
+|---|---|
+| `css/home-reference.css` | Estilos da página inicial com as cores, a fonte e os elementos gráficos do manual |
+| `css/fonts.css` | Ganhou a **Lexend** (fonte institucional), em cinco pesos |
+| `assets/fonts/lexend-*.woff2` | A Lexend convertida para a web, hospedada no próprio site (sem Google Fonts) |
+| `assets/brand/` | Arquivos oficiais do kit: marca negativa (com e sem descritor), favicon, ícones de aplicativo, manifesto, imagem de compartilhamento, padrão de L e ícones de apoio |
+| `favicon.ico` | Favicon na raiz, onde os navegadores procuram por padrão |
+| `index.html`, `en/index.html`, `es/index.html` | Marca nova no cabeçalho e no rodapé, favicon, cor do navegador (`#1E2B4E`) e imagem de compartilhamento (Open Graph) |
+
+O que mudou, seguindo o manual:
+- **Cores:** só azul `#1E2B4E`, vermelho `#651D2F`, ouro `#CB9510` e branco. O azul é o fundo principal (cabeçalho, abertura, propósito, prêmio e rodapé); o vermelho aparece nos números e no destaque dos ambientes de aprendizagem; o ouro, só em destaques sobre azul ou vermelho (nunca sobre branco).
+  O kit também tem um "vermelho para telas" (`#7A1428`, pasta 03), mais vivo, mas ele vale só para as imagens de redes sociais. O site fica com o `#651D2F`, o mesmo do favicon, dos logos e do `cores.css` do kit.
+- **Fonte:** Lexend em todos os textos, com a hierarquia do manual. Caixa alta só nos sobretítulos ("Matrículas 2027" deixou de ser em maiúsculas).
+- **Marca:** versão negativa (para fundo azul), sempre do arquivo original. Em telas com menos de 360 px entra a versão sem descritor, para respeitar o tamanho mínimo.
+- **Elementos gráficos:** padrão de L (branco a 10%) no fundo da abertura e dos números, moldura em L dourada em volta da foto principal, faixa dourada acima dos títulos da abertura e do prêmio, e ícones de apoio em ouro nos números.
+- **Movimento:** a curva de animação do manual, `cubic-bezier(0.22, 1, 0.36, 1)`.
+
+A imagem de compartilhamento aponta para `https://amplexoedu.com/assets/brand/...`: no WhatsApp e nas redes ela só aparece depois de publicada no oficial.
+
+> [!NOTE]
+> A pasta `Amplexo - Kit de marca/` é o material de origem (manual, EPS, PDFs para gráfica) e fica no Drive da equipe. Ela está no `.gitignore`: mesmo que alguém a coloque na pasta do repositório, ela não é enviada ao GitHub. Este repositório é público, e o que entra nele fica no histórico para sempre, mesmo se for apagado depois. O site usa apenas as cópias em `assets/brand/`, `assets/fonts/` e `favicon.ico`. Quando o kit mudar, copie para lá só os arquivos que o site usa.
+
+Para publicar no oficial, use em **O que levar**: `index.html en/index.html es/index.html css/home-reference.css css/fonts.css assets/fonts assets/brand favicon.ico`.
+
 ## Em teste agora: Matrículas e rematrículas 2027
 
 **https://site.amplexoedu.com/matriculas/** (no oficial: `amplexoedu.com/matriculas/`)

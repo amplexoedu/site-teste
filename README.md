@@ -97,9 +97,16 @@ Para publicar no oficial, use em **O que levar**: `index.html en/index.html es/i
 | `css/matriculas.css` | Estilos da página |
 | `js/matriculas.js` | Menu do celular, cabeçalho e revelação suave ao rolar |
 
-As fotos, o logotipo, o selo Brands For Good e as fontes já existem no site e não precisam ser levados de novo.
+As fotos e o selo Brands For Good já existem no site. A marca e a fonte do kit de marca estão em `assets/brand/`, `assets/fonts/` e `css/fonts.css`.
 
-Para publicar no oficial, use em **O que levar**: `matriculas en/matriculas es/matriculas css/matriculas.css css/global.css js/matriculas.js js/global.js js/cookies.js` (ou `.` para levar tudo o que está em teste).
+Para publicar no oficial, use em **O que levar**: `matriculas en/matriculas es/matriculas css/matriculas.css css/global.css css/fonts.css js/matriculas.js js/global.js js/cookies.js assets/fonts assets/brand favicon.ico` (ou `.` para levar tudo o que está em teste).
+
+**Identidade do kit de marca.** Como na página inicial, só a identidade mudou. Layout, fundos, efeitos e textos são os da versão anterior, para comparar:
+- **Cores:** os vários tons de azul, vinho, marsala e dourado viraram o tom único do kit (azul `#1E2B4E`, vermelho `#651D2F`, ouro `#CB9510`); os degradês dourados viraram ouro liso; o bege do fundo virou branco e o creme virou ouro a 10%. Onde o manual não permite a combinação, a cor foi ajustada: os dourados sobre fundo claro viraram vermelho, os ícones das trilhas sobre fundo claro ficaram azuis e cinco textos dourados pequenos sobre vermelho ficaram brancos.
+- **Fonte:** Lexend no lugar da Spectral e da Asap, nos mesmos tamanhos, e sem itálico, porque a Lexend não tem itálico.
+- **Marca no cabeçalho:** versão positiva com descritor acima de 680 px (200 px, o mínimo do manual) e sem descritor entre 521 e 680 px. Nos celulares (até 520 px), a barra também tem o botão do WhatsApp, as bandeiras e o menu, e não sobra espaço para a marca no tamanho mínimo; ali entra o ícone reduzido, no mesmo lugar do logo pequeno de antes.
+- **Cabeçalho:** como a marca nova e a Lexend são mais largas, as etapas que já existiam acontecem um pouco antes: as bandeiras perdem os nomes a partir de 1320 px (antes, 1280 px) e o botão vira só o ícone do WhatsApp a partir de 1240 px (antes, 1100 px). O espaço entre os itens do menu passou de 14 para 12 px.
+- **Rodapé:** o ícone vermelho antigo virou o ícone de aplicativo do kit. **Favicon** e **cor do navegador** também vêm do kit. A imagem de compartilhamento (foto dos alunos) não mudou.
 
 Seções: abertura com a faixa da campanha · o clube · trilhas · como funciona · comunidade · olimpíadas · conquistas · recursos e horários · campanha e chegada · dúvidas · convite final. Todos os botões abrem o WhatsApp (11) 91100-9793 com uma de três mensagens prontas: nova matrícula, rematrícula ou valores e condições. A página não mostra preços. Assim como a página inicial, ela adiciona `noindex` sozinha quando aberta em `site.amplexoedu.com`.
 
